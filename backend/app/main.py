@@ -14,9 +14,11 @@ app.add_middleware(
         "https://distill-khaki-seven.vercel.app",
         "https://distill-git-main-j-jills-projects.vercel.app",
     ],
-    allow_methods=["*"],
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
+
 app.include_router(ingest.router, prefix="/api")
 app.include_router(query.router, prefix="/api")
 
