@@ -13,6 +13,7 @@ app.add_middleware(
         "http://localhost:5173",
         "https://distill-khaki-seven.vercel.app",
         "https://distill-git-main-j-jills-projects.vercel.app",
+        "https://trydistill.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["GET", "POST", "DELETE", "OPTIONS"],
