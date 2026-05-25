@@ -9,11 +9,14 @@ app = FastAPI(title="Distill API", version="0.1.0")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[
+        "http://localhost:5173",
+        "https://distill-khaki-seven.vercel.app",
+        "https://distill-git-main-j-jills-projects.vercel.app",
+    ],
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 app.include_router(ingest.router, prefix="/api")
 app.include_router(query.router, prefix="/api")
 
