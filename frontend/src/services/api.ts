@@ -6,6 +6,7 @@ export interface Source {
   anchor: string;
   page: number | null;
   chunk: string;
+  type?: string;
 }
 
 export interface Model {
@@ -18,7 +19,6 @@ export async function getModels(): Promise<Model[]> {
   const data = await res.json();
   return data.models;
 }
-
 
 export async function ingestFile(file: File) {
   const form = new FormData();
@@ -41,13 +41,12 @@ export async function ingestUrl(url: string) {
   return res.json();
 }
 
-
 // Modifica queryStream para recibir el modelo
 export async function* queryStream(question: string, model: string) {
   const res = await fetch(`${BASE}/api/query`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ question, model }),  // ← agrega model
+    body: JSON.stringify({ question, model }), // ← agrega model
   });
 
   if (!res.ok || !res.body) throw new Error("Query failed");
@@ -75,8 +74,6 @@ export async function* queryStream(question: string, model: string) {
     }
   }
 }
-
-
 
 export async function resetCollection() {
   await fetch(`${BASE}/api/ingest/reset`, { method: "DELETE" });
